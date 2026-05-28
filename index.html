@@ -37,17 +37,21 @@
   <body><div id="app">
     <!--bg-[repeating-linear-gradient(to_right,#2b0000_0px,#5e0000_35px,#b91c1c_55px,#7a0000_75px,#2b0000_110px)]-->
     <!-- NOTE: The image "https://gcdnb.pbrd.co/images/M-7_6JpjSNk4.png" will die on August 26 -->
-    <div class="min-h-screen p-4 pt-8 bg-[url(./red-wall.png)] bg-linear-to-l from-red-900 to-red-500">
+    <div class="min-h-screen p-4 pt-5 bg-[url(./red-wall.png)] bg-linear-to-l from-red-900 to-red-500">
       <!--<div class="bg-[radial-gradient(circle,#ffff00_10px,transparent_1px)] bg-[size:40px_40px] h-250">
       </div>-->
       <div class="w-full lg:w-11/12 xl:w-5/6 2xl:w-2/3 m-auto bg-stone-800 leds1" style="filter: drop-shadow(0 5px 5px #000); animation-name:pulse; animation-duration:8s; animation-iteration-count: infinite;">
         <div class="px-24 py-12 bg-yellow-100 text-4xl text-red-950 font-[Limelight] inset-shadow-black inset-shadow-sm">
           <div class="flex flex-col text-center text-6xl xl:text-8xl mb-12">
-            <p>THE CINEMA LIST</p>
-            <p class="text-xl xl:text-2xl">and the memories we shared along the way</p>
+            <p>NOW SHOWING</p>
+            <p class="text-xl xl:text-2xl">★ The best (and worst) of cinema ★</p>
+          </div>
+          <div class="flex flex-row-reverse space-x-reverse">
+            <button class="text-xl xl:text-2xl px-2 bg-red-950 text-white">Rating</button>
+            <button class="text-xl xl:text-2xl px-2">Alphabet</button>
           </div>
           <hr class="mb-2 border border-red-950">
-          <div v-if="movies.length === 0">Loading movies...</div>
+          <div v-if="movies.length === 0" class="animate-pulse">Winding films...</div>
           <movie-item
             v-else
             v-for="movie in movies"
@@ -60,42 +64,42 @@
       </div>
     </div>
   </div></body>
-    <script>
-      const app = Vue.createApp({
-        data() {
-          return {
-            movies: []
-          }
-        },
-
-        async mounted() {
-          try {
-            const response = await fetch('./movies.json')
-            this.movies = await response.json()
-          } catch (error) {
-            console.error('Failed to load movies.json', error)
-          }
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          movies: []
         }
-      })
+      },
 
-      app.component('movie-item', {
-        props: {
-          title: String,
-          rating: [String, Number],
-          watched: Boolean
-        },
+      async mounted() {
+        try {
+          const response = await fetch('./movies.json')
+          this.movies = await response.json()
+        } catch (error) {
+          console.error('Failed to load movies.json', error)
+        }
+      }
+    })
 
-        template: `
-          <div v-if="watched" class="flex justify-between hover:bg-yellow-300 duration-300 px-1">
-            <p>{{ title }}</p>
-            <p>{{ rating }}★</p>
-          </div>
-          <div v-else class="flex justify-between bg-red-950 text-white duration-300 px-1">
-            <p>{{ title }}</p>
-          </div>
-        `
-      })
+    app.component('movie-item', {
+      props: {
+        title: String,
+        rating: [String, Number],
+        watched: Boolean
+      },
 
-      app.mount('#app')
-    </script>
+      template: `
+        <div v-if="watched" class="flex justify-between hover:bg-yellow-300 duration-300 px-1">
+          <p>{{ title }}</p>
+          <p>{{ rating }}★</p>
+        </div>
+        <div v-else class="flex justify-between bg-red-950 text-white duration-300 px-1">
+          <p>{{ title }}</p>
+        </div>
+      `
+    })
+
+    app.mount('#app')
+  </script>
 </html>
