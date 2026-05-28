@@ -51,11 +51,12 @@
             <button class="text-xl xl:text-2xl px-2">Alphabet</button>
           </div>
           <hr class="mb-2 border border-red-950">
-          <div v-if="movies.length === 0" class="animate-pulse">Winding films...</div>
+          <div v-if="movies.length === 0">Winding films...</div>
           <movie-item
             v-else
-            v-for="movie in movies"
+            v-for="(movie, index) in movies"
             :key="movie.name"
+            :index="index"
             :title="movie.name"
             :rating="movie.rating"
             :watched="movie.watched"
@@ -84,6 +85,7 @@
 
     app.component('movie-item', {
       props: {
+        index: Number,
         title: String,
         rating: [String, Number],
         watched: Boolean
@@ -91,7 +93,7 @@
 
       template: `
         <div v-if="watched" class="flex justify-between hover:bg-yellow-300 duration-300 px-1">
-          <p>{{ title }}</p>
+          <p>{{ index }}. {{ title }}</p>
           <p>{{ rating }}★</p>
         </div>
         <div v-else class="flex justify-between bg-red-950 text-white duration-300 px-1">
