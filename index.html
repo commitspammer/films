@@ -46,7 +46,7 @@
             <p class="text-sm md:text-xl xl:text-2xl">★ The best (and worst) of cinema ★</p>
           </div>
           <div class="flex flex-row-reverse space-x-reverse">
-            <button class="text-xl xl:text-2xl px-2 bg-red-950 text-white">Rating</button>
+            <button v-on:click="sortMoviesByRating" class="text-xl xl:text-2xl px-2 bg-red-950 text-white">Rating</button>
             <button class="text-xl xl:text-2xl px-2">Alphabet</button>
           </div>
           <hr class="mb-2 border border-red-950">
@@ -78,6 +78,12 @@
           this.movies = await response.json()
         } catch (error) {
           console.error('Failed to load movies.json', error)
+        }
+      },
+
+      methods: {
+        sortMoviesByRating() {
+          this.movies.sort((a, b) => a.rating < b.rating)
         }
       }
     })
