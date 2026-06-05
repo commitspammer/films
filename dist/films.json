@@ -196,5 +196,7 @@
   { "name": "1917", "watched": true, "rating": 0 },
   { "name": "Dunkirk", "watched": false, "rating": 0 },
   { "name": "Fargo", "watched": true, "rating": 0 },
-  { "name": "From", "watched": false, "rating": 0 }
+  { "name": "From", "watched": false, "rating": 0 },
+  { "name": "Backrooms", "watched": true, "rating": 0 },
+  { "name": "Quantum of Solace", "watched": true, "rating": 0 }
 ]

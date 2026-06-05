@@ -1,0 +1,4 @@
+:root {
+  --vt-c-white: #ffffff;
+  --test-var: var(--vt-c-white);
+}
