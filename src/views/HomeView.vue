@@ -25,14 +25,14 @@
         <div class="flex flex-row-reverse space-x-reverse">
           <button
             v-on:click="sortFilmsByRating"
-            class="text-xl xl:text-2xl px-2"
+            class="text-xl xl:text-2xl px-2 duration-300"
             :class="sortRatingPressedClass"
           >
             Rating
           </button>
           <button
             v-on:click="sortFilmsByAlphabet"
-            class="text-xl xl:text-2xl px-2"
+            class="text-xl xl:text-2xl px-2 duration-300"
             :class="sortAlphabetPressedClass"
           >
             Alphabet
@@ -66,15 +66,11 @@ const watchedThenUnwatchedFilms = computed(() =>
 const sortMode = ref(null)
 
 const sortRatingPressedClass = computed(() =>
-  sortMode.value === 'rating'
-    ? ['bg-red-950', 'text-white']
-    : ['hover:bg-yellow-300', 'duration-300'],
+  sortMode.value === 'rating' ? ['bg-red-950', 'text-white'] : ['hover:bg-yellow-300'],
 )
 
 const sortAlphabetPressedClass = computed(() =>
-  sortMode.value === 'alphabet'
-    ? ['bg-red-950', 'text-white']
-    : ['hover:bg-yellow-300', 'duration-300'],
+  sortMode.value === 'alphabet' ? ['bg-red-950', 'text-white'] : ['hover:bg-yellow-300'],
 )
 
 const sortFilmsByRating = () => {
